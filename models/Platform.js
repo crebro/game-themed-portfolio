@@ -27,4 +27,39 @@ class Platform {
       }
     }
   }
+
+  handlePlayer(player) {
+    if (player.x < this.x + this.width && player.x + player.width > this.x) {
+      if (
+        player.x + player.width < this.x + this.xCollisionOffset &&
+        (player.y + player.height > this.y) & (player.y < this.y + this.height)
+      ) {
+        player.x = this.x - player.width
+        player.jumping = false
+      } else if (
+        player.x > this.x + this.width - this.xCollisionOffset &&
+        (player.y + player.height > this.y) & (player.y < this.y + this.height)
+      ) {
+        player.x = this.x
+        player.jumping = false
+      } else if (
+        player.y + player.height > this.y &&
+        player.y + player.height < this.y + this.height / 2
+      ) {
+        player.onGround = true
+        player.velY = 0
+        player.y = this.y - player.height
+        this.playerPresent = true
+      } else if (
+        player.y < this.y + this.height &&
+        player.y > this.y + this.height / 2
+      ) {
+        player.y = this.y + this.height
+        player.velY = player.g
+      }
+    } else if (this.playerPresent) {
+      this.playerPresent = false
+      player.onGround = false
+    }
+  }
 }

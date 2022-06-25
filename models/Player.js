@@ -30,10 +30,10 @@ class Player {
       this.animationIndex = 0
     }
 
-    if (keyIsDown(INPUT_KEY_D)) {
+    if (keyIsDown(INPUT_KEY_D) && this.x < width - this.width) {
       this.x += 10
       image(this.runAnimation[this.animationIndex], this.x, this.y)
-    } else if (keyIsDown(INPUT_KEY_A)) {
+    } else if (keyIsDown(INPUT_KEY_A) && this.x > 0) {
       this.x -= 10
       push()
       scale(-1, 1)
@@ -63,52 +63,11 @@ class Player {
     this.animationCounter += 1
   }
 
-  handleGravity(platforms) {
+  handleGravity() {
     this.y += this.velY
 
     if (!this.onGround) {
       this.velY += this.g
-    }
-
-    for (let platform of platforms) {
-      platform.draw()
-      if (
-        this.x < platform.x + platform.width &&
-        this.x + this.width > platform.x
-      ) {
-        if (
-          this.x + this.width < platform.x + platform.xCollisionOffset &&
-          (this.y + this.height > platform.y) &
-            (this.y < platform.y + platform.height)
-        ) {
-          this.x = platform.x - this.width
-          this.jumping = false
-        } else if (
-          this.x > platform.x + platform.width - platform.xCollisionOffset &&
-          (this.y + this.height > platform.y) &
-            (this.y < platform.y + platform.height)
-        ) {
-          this.x = platform.x
-          this.jumping = false
-        } else if (
-          this.y + this.height > platform.y &&
-          this.y + this.height < platform.y + platform.height / 2
-        ) {
-          this.onGround = true
-          this.velY = 0
-          this.y = platform.y - this.height
-          platform.playerPresent = true
-        } else if (
-          this.y < platform.y + platform.height &&
-          this.y > platform.y + platform.height / 2
-        ) {
-          this.y = platform.y + platform.height
-          this.velY = this.g
-        }
-      } else if (platform.playerPresent) {
-        platform.playerPresent = false
-        this.onGround = false
-      }
     }
   }
 }

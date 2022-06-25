@@ -54,12 +54,18 @@ function drawTextDetails() {
 }
 
 function draw() {
+  pixelDensity(1)
+
   background(50, 143, 168)
 
   drawTextDetails()
 
   player.draw()
-  player.handleGravity(platforms)
+  player.handleGravity()
+  for (let platform of platforms) {
+    platform.draw()
+    platform.handlePlayer(player)
+  }
 }
 
 function keyReleased() {
