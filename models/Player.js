@@ -47,7 +47,11 @@ class Player {
       image(this.idleAnimation[this.animationIndex], this.x, this.y)
     }
 
-    if (keyIsPressed && keyIsDown(INPUT_KEY_W) && this.onGround) {
+    if (
+      keyIsPressed &&
+      (keyIsDown(INPUT_KEY_W) || keyIsDown(INPUT_KEY_SPACE)) &&
+      this.onGround
+    ) {
       this.velY = -this.jumpForce
       this.onGround = false
       this.jumping = true

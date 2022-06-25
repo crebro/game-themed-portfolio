@@ -2,3 +2,5 @@ let INPUT_KEY_W = 87
 let INPUT_KEY_A = 65
 let INPUT_KEY_S = 83
 let INPUT_KEY_D = 68
+
+let INPUT_KEY_SPACE = 32

@@ -6,7 +6,7 @@ let player
 let basePlatform
 let platforms = []
 
-let robusFont
+let dpComicFont
 
 function preload() {
   playerIdleAnimation = loadPlayerIdleAnimationSprites()
@@ -14,7 +14,7 @@ function preload() {
   singleTileImage = loadSingleTile()
   sideTile = loadSideTile()
 
-  robusFont = loadFont('assets/fonts/Robus.otf')
+  dpComicFont = loadFont('assets/fonts/dpcomic.ttf')
 }
 
 function setup() {
@@ -38,11 +38,17 @@ function drawTextDetails() {
   push()
   fill(255)
 
-  textFont(robusFont)
+  textFont(dpComicFont)
   textSize(100)
   text('Kreation Duwal', 200, 200)
   textSize(50)
   text('An Interactive Portfolio', 200, 200 + 50)
+
+  text(
+    'W or <space>, A, D to move',
+    platforms[1].x,
+    platforms[1].y + platforms[1].height + 100,
+  )
 
   pop()
 }
