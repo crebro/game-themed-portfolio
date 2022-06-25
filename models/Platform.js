@@ -35,13 +35,11 @@ class Platform {
         (player.y + player.height > this.y) & (player.y < this.y + this.height)
       ) {
         player.x = this.x - player.width
-        player.jumping = false
       } else if (
         player.x > this.x + this.width - this.xCollisionOffset &&
         (player.y + player.height > this.y) & (player.y < this.y + this.height)
       ) {
         player.x = this.x
-        player.jumping = false
       } else if (
         player.y + player.height > this.y &&
         player.y + player.height < this.y + this.height / 2

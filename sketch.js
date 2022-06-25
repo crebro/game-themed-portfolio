@@ -1,12 +1,16 @@
 let playerIdleAnimation
 let playerRunAnimation
 let singleTileImage
+let jetpackImages
 let sideTile
+
 let player
-let basePlatform
 let platforms = []
+let jetpack
 
 let dpComicFont
+
+let collectables = []
 
 function preload() {
   playerIdleAnimation = loadPlayerIdleAnimationSprites()
@@ -15,6 +19,7 @@ function preload() {
   sideTile = loadSideTile()
 
   dpComicFont = loadFont('assets/fonts/dpcomic.ttf')
+  jetpackImages = loadJetPackImage()
 }
 
 function setup() {
@@ -32,6 +37,9 @@ function setup() {
       int(width / singleTileImage.width) * 2,
     ),
   ]
+  collectables.push(
+    new Jetpack(platforms[1].x, platforms[1].y - jetpackImages.noFlames.height),
+  )
 }
 
 function drawTextDetails() {
@@ -59,6 +67,25 @@ function draw() {
   background(50, 143, 168)
 
   drawTextDetails()
+
+  for (let collectable of collectables) {
+    collectable.draw()
+    if (
+      collisionDetection(
+        collectable.x,
+        collectable.y,
+        collectable.width,
+        collectable.height,
+        player.x,
+        player.y,
+        player.width,
+        player.height,
+      )
+    ) {
+      player.handleEquipmentCollect(collectable)
+      collectables.splice(collectables.indexOf(collectable), 1)
+    }
+  }
 
   player.draw()
   player.handleGravity()

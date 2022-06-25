@@ -37,3 +37,14 @@ function loadSideTile() {
     image.resizeNN(100, 100),
   )
 }
+
+function loadJetPackImage() {
+  return {
+    noFlames: loadImage('assets/jetpack/jetpack.png', (image) =>
+      image.resizeNN(60, 100),
+    ),
+    flames: loadImage('assets/jetpack/jetpack-flames.png', (image) =>
+      image.resizeNN(60, 100),
+    ),
+  }
+}

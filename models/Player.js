@@ -18,7 +18,8 @@ class Player {
     this.width = 100
     this.jumpForce = 30
     this.onGround = false
-    this.jumping = false
+    this.equipments = []
+    this.jumpingManipulationExists = false
   }
 
   draw() {
@@ -30,6 +31,23 @@ class Player {
       this.animationIndex = 0
     }
 
+    this.handleEquipments()
+
+    // movement logic includes the drawing of the player as well
+    this.movementLogic()
+
+    if (!this.jumpingManipulationExists) {
+      this.jumpingLogic()
+    }
+
+    if (this.animationCounter > 10) {
+      this.animationIndex += 1
+      this.animationCounter = 0
+    }
+    this.animationCounter += 1
+  }
+
+  movementLogic() {
     if (keyIsDown(INPUT_KEY_D) && this.x < width - this.width) {
       this.x += 10
       image(this.runAnimation[this.animationIndex], this.x, this.y)
@@ -46,28 +64,36 @@ class Player {
     } else {
       image(this.idleAnimation[this.animationIndex], this.x, this.y)
     }
+  }
 
+  handleEquipments() {
+    for (let equipment of this.equipments) {
+      equipment.draw(this)
+      equipment.handleUsage(this)
+    }
+  }
+
+  handleEquipmentCollect(equipment) {
+    switch (equipment.manipulates) {
+      case 'jumpingLogic':
+        this.jumpingManipulationExists = true
+        this.equipments.push(equipment)
+        break
+    }
+  }
+
+  jumpingLogic() {
     if (
-      keyIsPressed &&
       (keyIsDown(INPUT_KEY_W) || keyIsDown(INPUT_KEY_SPACE)) &&
       this.onGround
     ) {
       this.velY = -this.jumpForce
       this.onGround = false
-      this.jumping = true
     }
-    if (this.animationCounter > 10) {
-      this.animationIndex += 1
-      this.animationCounter = 0
-    }
-    this.animationCounter += 1
   }
 
   handleGravity() {
     this.y += this.velY
-
-    if (!this.onGround) {
-      this.velY += this.g
-    }
+    this.velY += this.g
   }
 }
