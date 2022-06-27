@@ -11,6 +11,7 @@ let jetpack
 let dpComicFont
 
 let collectables = []
+let currentTranslation = [0, 0]
 
 function preload() {
   playerIdleAnimation = loadPlayerIdleAnimationSprites()
@@ -43,10 +44,10 @@ function setup() {
 }
 
 function drawTextDetails() {
+  textFont(dpComicFont)
   push()
   fill(255)
 
-  textFont(dpComicFont)
   textSize(100)
   text('Kreation Duwal', 200, 200)
   textSize(50)
@@ -63,6 +64,11 @@ function drawTextDetails() {
 
 function draw() {
   pixelDensity(1)
+
+  if (player.jumpingManipulationExists && player.y < 200) {
+    translate(0, -player.y + 200)
+    currentTranslation = [0, -player.y + 200]
+  }
 
   background(50, 143, 168)
 

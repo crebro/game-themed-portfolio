@@ -30,6 +30,13 @@ class Platform {
 
   handlePlayer(player) {
     if (player.x < this.x + this.width && player.x + player.width > this.x) {
+      if (player.y < this.y && player.y + player.velY > this.y) {
+        player.y = this.y - player.height
+        player.velY = 0
+        player.onGround = true
+        this.playerPresent = true
+      }
+
       if (
         player.x + player.width < this.x + this.xCollisionOffset &&
         (player.y + player.height > this.y) & (player.y < this.y + this.height)

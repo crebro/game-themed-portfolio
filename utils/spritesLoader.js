@@ -13,7 +13,7 @@ function loadPlayerIdleAnimationSprites() {
     4,
     'assets/player/idle/adventurer_idle_',
     '.png',
-    (image) => image.resizeNN(100, 100),
+    (image) => image.resizeNN(70, 100),
   )
 }
 
@@ -22,7 +22,7 @@ function loadPlayerRunRightAnimation() {
     6,
     'assets/player/run/adventurer_run_',
     '.png',
-    (image) => image.resizeNN(100, 100),
+    (image) => image.resizeNN(70, 100),
   )
 }
 

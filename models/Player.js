@@ -15,7 +15,7 @@ class Player {
     this.animationCounter = 0
     this.velY = 0
     this.height = 100
-    this.width = 100
+    this.width = 70
     this.jumpForce = 30
     this.onGround = false
     this.equipments = []
