@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Pgn to Gif converter",
+    "image": "https://duwalkreation.vercel.app/assets/images/projects/pgntogif.JPG",
+    "description": "Convert the pgn of your chess games into gif!"
+  },
+  {
+    "name": "DiscoForum Bot",
+    "image": "https://duwalkreation.vercel.app/assets/images/projects/discoforum.JPG",
+    "description": "Answer and Ask Question in a Discord Server"
+  },
+  {
+    "name": "Brainstorm Application",
+    "image": "https://duwalkreation.vercel.app/assets/images/projects/brainstorm.JPG",
+    "description": "Play a bunch of mind gmaes and improve your skills"
+  }
+]

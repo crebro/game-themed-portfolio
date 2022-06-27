@@ -14,8 +14,8 @@ class Player {
     // variable used to slow down the animation
     this.animationCounter = 0
     this.velY = 0
-    this.height = 100
-    this.width = 70
+    this.height = USER_HEIGHT
+    this.width = USER_WIDTH
     this.jumpForce = 30
     this.onGround = false
     this.equipments = []

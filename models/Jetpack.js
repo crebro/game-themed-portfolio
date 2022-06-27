@@ -21,15 +21,12 @@ class Jetpack {
     textSize(30)
     fill(255)
     text(
-      `Altitude: ${width - player.y} `,
+      `Altitude: ${height - player.y} `,
       currentTranslation[0] + 10,
       -currentTranslation[1] + 40,
     )
 
-    if (
-      (keyIsDown(INPUT_KEY_W) || keyIsDown(INPUT_KEY_SPACE)) &&
-      player.onGround
-    ) {
+    if (keyIsDown(INPUT_KEY_W) || keyIsDown(INPUT_KEY_SPACE)) {
       player.velY += this.thrustPower
       this.isActive = true
     } else if (this.isActive) {

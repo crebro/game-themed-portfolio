@@ -13,7 +13,9 @@ class Platform {
 
   draw() {
     for (let i = 0; i < this.nBlocks; i++) {
-      if (i === 0) {
+      if (i === this.nBlocks - 1) {
+        image(this.sideTile, this.x + this.img.width * i, this.y)
+      } else if (i === 0) {
         push()
         scale(-1, 1)
         image(
@@ -46,7 +48,7 @@ class Platform {
         player.x > this.x + this.width - this.xCollisionOffset &&
         (player.y + player.height > this.y) & (player.y < this.y + this.height)
       ) {
-        player.x = this.x
+        player.x = this.x + this.width
       } else if (
         player.y + player.height > this.y &&
         player.y + player.height < this.y + this.height / 2
