@@ -49,10 +49,10 @@ class Player {
 
   movementLogic() {
     if (keyIsDown(INPUT_KEY_D) && this.x < width - this.width) {
-      this.x += 10
+      this.x += 20
       image(this.runAnimation[this.animationIndex], this.x, this.y)
     } else if (keyIsDown(INPUT_KEY_A) && this.x > 0) {
-      this.x -= 10
+      this.x -= 20
       push()
       scale(-1, 1)
       image(

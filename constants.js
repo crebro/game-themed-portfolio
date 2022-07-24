@@ -1,5 +1,3 @@
-let projectsSpacing = 600 // pixels
-
 let INPUT_KEY_W = 87
 let INPUT_KEY_A = 65
 let INPUT_KEY_S = 83
@@ -7,7 +5,7 @@ let INPUT_KEY_D = 68
 
 let INPUT_KEY_SPACE = 32
 
-let ELEMENTS_SCALE = 0.5
+let ELEMENTS_SCALE = window.innerWidth / 1500
 
 let USER_WIDTH = 70 * ELEMENTS_SCALE
 let USER_HEIGHT = 100 * ELEMENTS_SCALE
@@ -18,3 +16,5 @@ let JETPACK_WIDTH = 60 * ELEMENTS_SCALE
 let JETPACK_HEIGHT = 100 * ELEMENTS_SCALE
 
 let PROJECTS_IMAGE_SIZE = 200 * ELEMENTS_SCALE
+
+let projectsSpacing = 600 * ELEMENTS_SCALE // pixels

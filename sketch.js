@@ -5,6 +5,8 @@ let jetpackImages
 let sideTile
 let projectsData
 
+let profileImage
+
 let player
 let platforms = []
 let jetpack
@@ -34,10 +36,17 @@ function preload() {
         (projectsData = data.map((data) => {
           return {
             ...data,
-            image: loadImage(data.image, (image) => image.resize(250, 250)),
+            image: loadImage(data.image, (image) =>
+              image.resize(250 * ELEMENTS_SCALE, 250 * ELEMENTS_SCALE),
+            ),
           }
         })),
     )
+
+  profileImage = loadImage(
+    'https://avatars.githubusercontent.com/crebro',
+    (image) => image.resize(250, 250),
+  )
 }
 
 function setup() {
@@ -59,18 +68,45 @@ function setup() {
     new Jetpack(platforms[1].x, platforms[1].y - jetpackImages.noFlames.height),
   )
 
-  let position = -projectsSpacing
+  let introductionPlatform = new Platform(
+    width / 2 - width / 2 / 2,
+    -projectsSpacing / 2,
+    int(width / TILE_SIZE / 2),
+  )
+
+  platforms.push(introductionPlatform)
+  let imageXPos = introductionPlatform.x + 20
+  let textXPos = imageXPos + profileImage.width + 20
+  let imageYPos = introductionPlatform.y - profileImage.height - 20
+  drawableData.push({
+    image: {
+      x: imageXPos,
+      y: imageYPos,
+      imageData: profileImage,
+    },
+    title: {
+      x: textXPos,
+      y: imageYPos + profileImage.height / 2,
+      data: 'Kreation Duwal',
+    },
+    description: {
+      x: textXPos,
+      y: imageYPos + profileImage.height / 2 + 50,
+      data:
+        'A 10th grader and a full stack developer.\nLearning new technologiegs and building jawbreaking projects.\n( maths, p5.js, game-dev, web-dev,  )',
+    },
+  })
+
+  let position = -projectsSpacing * 2
   for (let i = 0; i < projectsData.length; i++) {
-    //                                    // 6 refers to the number of blocks
     let xPos = 0
-    platforms.push(new Platform(xPos, position, 8))
-    position -= projectsSpacing
+    platforms.push(new Platform(xPos, position, int(width / TILE_SIZE / 2)))
 
     let imageXPos = 20
     let textXPos = imageXPos + projectsData[i].image.width + 20
-    let imageYPos =
-      -projectsSpacing -
-      (projectsSpacing * i + projectsData[i].image.height + 20)
+    let imageYPos = position - projectsData[i].image.height - 20
+    // -projectsSpacing -
+    // (projectsSpacing * i + projectsData[i].image.height + 20)
     drawableData.push({
       image: {
         x: imageXPos,
@@ -88,6 +124,7 @@ function setup() {
         data: projectsData[i].description,
       },
     })
+    position -= projectsSpacing
   }
 }
 
@@ -133,13 +170,13 @@ function draw() {
       drawableDataElement.image.x,
       drawableDataElement.image.y,
     )
-    textSize(40)
+    textSize(50)
     text(
       drawableDataElement.title.data,
       drawableDataElement.title.x,
       drawableDataElement.title.y,
     )
-    textSize(30)
+    textSize(25)
     text(
       drawableDataElement.description.data,
       drawableDataElement.description.x,

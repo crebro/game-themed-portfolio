@@ -21,7 +21,7 @@ class Jetpack {
     textSize(30)
     fill(255)
     text(
-      `Altitude: ${height - player.y} `,
+      `Altitude: ${int(height - player.y)} `,
       currentTranslation[0] + 10,
       -currentTranslation[1] + 40,
     )
