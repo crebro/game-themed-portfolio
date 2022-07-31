@@ -97,14 +97,16 @@ function setup() {
     },
   })
 
-  let position = -projectsSpacing * 2
+  let position = -projectsSpacing * 1.5
   for (let i = 0; i < projectsData.length; i++) {
-    let xPos = 0
+    console.log(width - int(width / TILE_SIZE / 2))
+    let xPos = i % 2 === 0 ? 0 : width - int(width / TILE_SIZE / 2) * TILE_SIZE
     platforms.push(new Platform(xPos, position, int(width / TILE_SIZE / 2)))
 
-    let imageXPos = 20
+    let imageXPos = xPos + 20
     let textXPos = imageXPos + projectsData[i].image.width + 20
     let imageYPos = position - projectsData[i].image.height - 20
+
     // -projectsSpacing -
     // (projectsSpacing * i + projectsData[i].image.height + 20)
     drawableData.push({
